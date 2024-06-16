@@ -1,11 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contactForm');
+    const submitButton = document.getElementById('submitButton');
+    const spinner = document.getElementById('spinner');
 
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
 
+        // Button deaktivieren und Spinner anzeigen
+        submitButton.classList.add('disabled');
+        spinner.style.display = 'inline-block';
+
         const formData = new FormData(contactForm);
-        const formSubmitUrl = 'https://formsubmit.co/help.nand-studios.com';
+        const formSubmitUrl = 'https://formsubmit.co/help@nand-studios.com';
+        const successRedirectUrl = 'https://help.nand-studios.com/success';
 
         fetch(formSubmitUrl, {
             method: 'POST',
@@ -16,12 +23,14 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(data => {
-            // Öffne die FormSubmit-Seite in einem neuen Tab im Hintergrund
-            const formSubmitPage = window.open('about:blank', '_blank');
-            formSubmitPage.location.href = data.success ? 'https://help.nand-studios.com/success' : 'https://formsubmit.co/help.nand-studios.com/error';
+            // Erfolgs-URL, zu der der Benutzer weitergeleitet werden soll
+            window.location.href = successRedirectUrl;
         })
         .catch(error => {
             console.error('Form submission error:', error);
+            // Button und Spinner wieder zurücksetzen im Fehlerfall
+            submitButton.classList.remove('disabled');
+            spinner.style.display = 'none';
         });
     });
 });

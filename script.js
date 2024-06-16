@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             // Erfolg! Weiterleitung zur Erfolgsseite
-            window.location.href = 'https://help.nandstudios.com/success';
+            window.location.href = 'https://help.nand-studios.com/success';
         })
         .catch(error => {
             // Fehlerbehandlung, falls erforderlich

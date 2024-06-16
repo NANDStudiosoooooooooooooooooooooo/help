@@ -4,13 +4,9 @@ document.addEventListener('DOMContentLoaded', function() {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
 
-        // Formular-Daten sammeln
         const formData = new FormData(contactForm);
-
-        // FormSubmit URL
         const formSubmitUrl = 'https://formsubmit.co/help@nand-studios.com';
 
-        // Fetch-Anfrage für das FormSubmit
         fetch(formSubmitUrl, {
             method: 'POST',
             body: formData,
@@ -20,11 +16,10 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(data => {
-            // Erfolg! Weiterleitung zur Erfolgsseite
+            // Erfolgs-URL, zu der der Benutzer weitergeleitet werden soll
             window.location.href = 'https://help.nand-studios.com/success';
         })
         .catch(error => {
-            // Fehlerbehandlung, falls erforderlich
             console.error('Form submission error:', error);
         });
     });

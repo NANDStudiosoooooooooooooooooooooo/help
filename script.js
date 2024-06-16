@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
 
         const formData = new FormData(contactForm);
-        const formSubmitUrl = 'https://formsubmit.co/help@nand-studios.com';
+        const formSubmitUrl = 'https://formsubmit.co/your_email_here';
 
         fetch(formSubmitUrl, {
             method: 'POST',
@@ -16,8 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(data => {
-            // Erfolgs-URL, zu der der Benutzer weitergeleitet werden soll
-            window.location.href = 'https://help.nand-studios.com/success';
+            // Öffne die FormSubmit-Seite in einem neuen Tab im Hintergrund
+            const formSubmitPage = window.open('about:blank', '_blank');
+            formSubmitPage.location.href = data.success ? 'https://help.nand-studios.com/success' : 'https://formsubmit.co/your_email_here';
         })
         .catch(error => {
             console.error('Form submission error:', error);

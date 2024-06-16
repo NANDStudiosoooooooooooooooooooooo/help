@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const formData = new FormData(contactForm);
 
         // FormSubmit URL
-        const formSubmitUrl = 'https://formsubmit.co/your_email_here';
+        const formSubmitUrl = 'https://formsubmit.co/help@nand-studios.com';
 
         // Fetch-Anfrage für das FormSubmit
         fetch(formSubmitUrl, {
